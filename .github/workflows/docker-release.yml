@@ -39,12 +39,12 @@ jobs:
       - name: Login to ACR
         uses: aliyun/acr-login@v1
         with:
-          login-server: https://registry.cn-hangzhou.aliyuncs.com
-          username: "${{ secrets.REGISTRY_USERNAME }}"
-          password: "${{ secrets.REGISTRY_PASSWORD }}"
+          login-server: https://registry.cn-shanghai.aliyuncs.com
+          access-key-id: "${{ secrets.ACCESSKEYID }}"
+          access-key-secret: "${{ secrets.ACCESSKEYSECRET }}"
       - name: Build and push image
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t registry.cn-hangzhou.aliyuncs.com/myrepo/demo:$IMAGE_TAG .
-          docker push registry.cn-hangzhou.aliyuncs.com/myrepo/demo:$IMAGE_TAG
+          docker build -t registry.cn-shanghai.aliyuncs.com/dianhsu/cloudreve:$IMAGE_TAG .
+          docker push registry.cn-shanghai.aliyuncs.com/dianhsu/cloudreve:$IMAGE_TAG
