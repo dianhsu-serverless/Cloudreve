@@ -2,7 +2,7 @@ FROM golang:1.18-alpine as cloudreve_builder
 
 
 # install dependencies and build tools
-RUN apk update && apk add --no-cache wget curl git yarn build-base gcc abuild binutils binutils-doc gcc-doc zip
+RUN apk update && apk add --no-cache wget curl git yarn build-base gcc abuild binutils binutils-doc gcc-doc zip nfs-utils
 
 WORKDIR /cloudreve_builder
 RUN git clone --recurse-submodules https://github.com/cloudreve/Cloudreve.git
