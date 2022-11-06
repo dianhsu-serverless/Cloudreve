@@ -28,8 +28,6 @@ FROM ubuntu:latest
 WORKDIR /cloudreve
 
 RUN apt-get update && apt-get install tzdata nfs-common -y
-RUN echo "options sunrpc tcp_slot_table_entries=128" >>  /etc/modprobe.d/sunrpc.conf 
-RUN echo "options sunrpc tcp_max_slot_table_entries=128" >>  /etc/modprobe.d/sunrpc.conf
 
 # we using the `Asia/Shanghai` timezone by default, you can do modification at your will
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
