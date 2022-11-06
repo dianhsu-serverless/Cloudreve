@@ -27,7 +27,7 @@ FROM ubuntu:latest
 
 WORKDIR /cloudreve
 
-RUN apt-get update && apt-get install tzdata nfs-common
+RUN apt-get update && apt-get install tzdata nfs-common -y
 RUN echo "options sunrpc tcp_slot_table_entries=128" >>  /etc/modprobe.d/sunrpc.conf 
 RUN echo "options sunrpc tcp_max_slot_table_entries=128" >>  /etc/modprobe.d/sunrpc.conf
 
