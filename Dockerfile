@@ -2,7 +2,7 @@ FROM golang:1.18-alpine as cloudreve_builder
 
 
 # install dependencies and build tools
-RUN apk update && apk add --no-cache wget curl git yarn build-base gcc abuild binutils binutils-doc gcc-doc zip nfs-utils
+RUN apk update && apk add --no-cache wget curl git yarn build-base gcc abuild binutils binutils-doc gcc-doc zip 
 
 WORKDIR /cloudreve_builder
 RUN git clone --recurse-submodules https://github.com/cloudreve/Cloudreve.git
@@ -23,11 +23,13 @@ RUN tag_name=$(git describe --tags) \
 
 
 # build final image
-FROM alpine:latest
+FROM ubuntu:latest
 
 WORKDIR /cloudreve
 
-RUN apk update && apk add --no-cache tzdata
+RUN apt-get update && apt-get install tzdata nfs-common
+RUN echo "options sunrpc tcp_slot_table_entries=128" >>  /etc/modprobe.d/sunrpc.conf 
+RUN echo "options sunrpc tcp_max_slot_table_entries=128" >>  /etc/modprobe.d/sunrpc.conf
 
 # we using the `Asia/Shanghai` timezone by default, you can do modification at your will
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
