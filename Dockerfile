@@ -2,7 +2,7 @@ FROM golang:1.18-alpine as cloudreve_builder
 
 
 # install dependencies and build tools
-RUN apk update && apk add --no-cache wget curl git yarn build-base gcc abuild binutils binutils-doc gcc-doc zip 
+RUN apk update && apk add --no-cache wget curl git yarn build-base gcc abuild binutils binutils-doc gcc-doc zip
 
 WORKDIR /cloudreve_builder
 RUN git clone --recurse-submodules https://github.com/cloudreve/Cloudreve.git
@@ -23,11 +23,11 @@ RUN tag_name=$(git describe --tags) \
 
 
 # build final image
-FROM ubuntu:latest
+FROM alpine:latest
 
 WORKDIR /cloudreve
 
-RUN apt-get update && apt-get install tzdata -y
+RUN apk update && apk add --no-cache tzdata
 
 # we using the `Asia/Shanghai` timezone by default, you can do modification at your will
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
