@@ -28,8 +28,8 @@ jobs:
         uses: aliyun/acr-login@v1
         with:
           login-server: https://registry.cn-shanghai.aliyuncs.com
-          access-key-id: "${{ secrets.ACCESSKEYID }}"
-          access-key-secret: "${{ secrets.ACCESSKEYSECRET }}"
+          access-key-id: "${{ secrets.ALIYUN_AK }}"
+          access-key-secret: "${{ secrets.ALIYUN_SK }}"
       - name: Build and push image
         env:
           IMAGE_TAG: ${{ github.sha }}
