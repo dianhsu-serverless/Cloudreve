@@ -27,7 +27,7 @@ FROM ubuntu:latest
 
 WORKDIR /cloudreve
 
-RUN apt-get update && apt-get install tzdata nfs-common -y
+RUN apt-get update && apt-get install tzdata -y
 
 # we using the `Asia/Shanghai` timezone by default, you can do modification at your will
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
